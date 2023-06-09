@@ -1,12 +1,13 @@
 from tkinter import *
 from python_terraform import *
+from tkinter import filedialog
 
 tk = Tk()
 tk.title('Terraform EXE GUI made by ymcajudo@gmail.com')
-tk.geometry('610x70')
+tk.geometry('690x80')
 #tk.resizable(True,True)
 tk.resizable(False,False)
-    
+  
 TFfolderlabel = Label(tk,text='Working Directory')
 TFfolderlabel.grid(row=0, column=0)
 
@@ -17,6 +18,11 @@ outputlabel = Label(tk, text="", justify='center')
 outputlabel.grid(row=outputlabel_row, column=outputlabel_column, columnspan=outputlabel_columnspan)
 
 # Terraform 코드가 있는 Working Directory 값을 입력. 주의> 디렉토리 주소에 '\' => '/' 로 변경해야함
+def AskDirectory():
+    tk.dirName=filedialog.askdirectory()
+    TFWorkingDir.delete(0, "end")  # 기존 텍스트 삭제
+    TFWorkingDir.insert(0, tk.dirName)  # 새로운 텍스트 삽입
+    
 TFWorkingDir = Entry(tk, width=50)
 TFWorkingDir.grid(row=0,column=1)
 
@@ -91,9 +97,14 @@ def labelreset():
     global outputlabel
     outputlabel.grid_forget()       #label을 위치를 grid 방식으로 정의한 경우, grid_forget()으로 삭제(실제는 안 보이게 만듦)
 
-btnInit = Button(tk,text='init',bg='black',fg='white',command=TFinit).grid(row=0,column=2)
-btnPlan = Button(tk,text='plan',bg='black',fg='white',command=TFplan).grid(row=0,column=3)
-btnApply = Button(tk,text='apply',bg='black',fg='white',command=TFapply).grid(row=0,column=4)
-btnDestroy = Button(tk,text='destroy',bg='black',fg='white',command=TFdestroy).grid(row=0,column=5)
+btnWidth = 5
+btnHeight = 2
+
+btnDirectory = Button(tk,text='Folder',bg='black',fg='white',command=AskDirectory, width=btnWidth, height=btnHeight).grid(row=0,column=2)
+btnInit = Button(tk,text='init',bg='black',fg='white',command=TFinit, width=btnWidth, height=btnHeight).grid(row=0,column=3)
+btnPlan = Button(tk,text='plan',bg='black',fg='white',command=TFplan, width=btnWidth, height=btnHeight).grid(row=0,column=4)
+btnApply = Button(tk,text='apply',bg='black',fg='white',command=TFapply, width=btnWidth, height=btnHeight).grid(row=0,column=5)
+btnDestroy = Button(tk,text='destroy',bg='black',fg='white',command=TFdestroy, width=btnWidth, height=btnHeight).grid(row=0,column=6)
+
 
 tk.mainloop()

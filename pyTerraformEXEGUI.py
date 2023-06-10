@@ -23,7 +23,7 @@ def AskDirectory():
     TFWorkingDir.delete(0, "end")  # 기존 텍스트 삭제
     TFWorkingDir.insert(0, tk.dirName)  # 새로운 텍스트 삽입
     
-TFWorkingDir = Entry(tk, width=50)
+TFWorkingDir = Entry(tk, width=50, justify='right')
 TFWorkingDir.grid(row=0,column=1)
 
 def printOutputOnGUI(return_code, output, err, tfCmd):
@@ -100,7 +100,7 @@ def labelreset():
 btnWidth = 5
 btnHeight = 2
 
-btnDirectory = Button(tk,text='Folder',bg='black',fg='white',command=AskDirectory, width=btnWidth, height=btnHeight).grid(row=0,column=2)
+btnDirectory = Button(tk,text='Search',bg='black',fg='white',command=AskDirectory, width=btnWidth, height=btnHeight).grid(row=0,column=2)
 btnInit = Button(tk,text='init',bg='black',fg='white',command=TFinit, width=btnWidth, height=btnHeight).grid(row=0,column=3)
 btnPlan = Button(tk,text='plan',bg='black',fg='white',command=TFplan, width=btnWidth, height=btnHeight).grid(row=0,column=4)
 btnApply = Button(tk,text='apply',bg='black',fg='white',command=TFapply, width=btnWidth, height=btnHeight).grid(row=0,column=5)
